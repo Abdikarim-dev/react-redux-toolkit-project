@@ -6,8 +6,6 @@ const CartContainer = () => {
   const dispatch = useDispatch();
   const { cartItems, amount, total } = useSelector((store) => store.cart);
 
-
-
   if (amount < 1)
     return (
       <section className="cart">
@@ -31,7 +29,7 @@ const CartContainer = () => {
         <div className="cart-total">
           <hr />
           <h4>
-            total <span>${total.toFixed(4)}</span>
+            total <span>${Number(total).toFixed(2)}</span>
           </h4>
         </div>
         <button
