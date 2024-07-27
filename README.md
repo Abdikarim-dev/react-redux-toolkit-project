@@ -2,4 +2,4 @@
 - Abdikarim Ismail Ali
 
 ## Project Live Link
-- https://react-redux-project-phi.vercel.app/
+- https://react-redux-toolkit-project.vercel.app/
