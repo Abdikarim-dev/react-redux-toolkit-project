@@ -11,7 +11,7 @@ function Navbar() {
         <div className="nav-container">
           <CartIcon />
           <div className="amount-container">
-            <p className="total-amount">{Number(amount).toFixed(2)}</p>
+            <p className="total-amount">{amount}</p>
           </div>
         </div>
       </div>

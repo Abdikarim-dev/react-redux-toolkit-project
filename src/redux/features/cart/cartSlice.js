@@ -1,20 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { toggleModal } from "../modal/modalSlice";
+import cartItems from "../../../cartItems";
+// import axios from "axios";
+// import { toggleModal } from "../modal/modalSlice";
 
-const url = "https://www.course-api.com/react-useReducer-cart-project";
+// const url = "https://www.course-api.com/react-useReducer-cart-project";
 
-export const getCartItems = createAsyncThunk("cart/getCartItems", async (_,thunkAPI) => {
-  try {
-    const resp = await axios(url);
-    return resp.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue("SOMETHING WENT WRONG")
-  }
-});
+// export const getCartItems = createAsyncThunk(
+//   "cart/getCartItems",
+//   async (_, thunkAPI) => {
+//     try {
+//       const resp = await axios(url);
+//       return resp.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue("SOMETHING WENT WRONG");
+//     }
+//   }
+// );
 
 const initialState = {
-  cartItems: [],
+  cartItems: cartItems,
   amount: 0,
   total: 0,
   isLoading: true,
@@ -58,23 +62,36 @@ const cartSlice = createSlice({
       state.total = total;
     },
   },
-  extraReducers: {
-    [getCartItems.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getCartItems.fulfilled]: (state, action) => {
-      state.cartItems = action.payload;
-      state.isLoading = false;
-    },
-    [getCartItems.rejected]: (state,action) => {
-        console.log(action)
-      state.isLoading = false;
-    },
-  },
+  //   extraReducers: {
+  //     [getCartItems.pending]: (state) => {
+  //       state.isLoading = true;
+  //     },
+  //     [getCartItems.fulfilled]: (state, action) => {
+  //       state.cartItems = action.payload;
+  //       state.isLoading = false;
+  //     },
+  //     [getCartItems.rejected]: (state,action) => {
+  //         console.log(action)
+  //       state.isLoading = false;
+  //     },
+  //   },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(getCartItems.pending, (state) => {
+  //       state.isLoading = true;
+  //     })
+  //     .addCase(getCartItems.fulfilled, (state, action) => {
+  //       state.cartItems = action.payload;
+  //       // state.amount = action.payload.length;
+  //       state.isLoading = false;
+  //     })
+  //     .addCase(getCartItems.rejected, (state) => {
+  //       state.isLoading = false;
+  //     });
+  // },
 });
 
-
 export const { clearCart, removeItem, increase, decrease, calculateTotals } =
-cartSlice.actions;
+  cartSlice.actions;
 
 export default cartSlice.reducer;
